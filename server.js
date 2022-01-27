@@ -117,11 +117,13 @@ app.get("/api/users/:_id/logs", (req, res) => {
         }),
       });
     }
+    const fromDate = new Date(from);
+    const toDate = new Date(to);
     if (from) {
-      logs = logs.filter((log) => log.date >= new Date(from));
+      logs = logs.filter((log) => log.date >= fromDate);
     }
     if (to) {
-      logs = logs.filter((log) => log.date <= new Date(to));
+      logs = logs.filter((log) => log.date <= toDate);
     }
     if (limit) {
       logs = logs.slice(0, +limit);
@@ -129,6 +131,8 @@ app.get("/api/users/:_id/logs", (req, res) => {
     return res.json({
       _id: user._id,
       username: user.username,
+      from: fromDate.toDateString(),
+      to: toDate.toDateString(),
       count: logs.length,
       log: logs.map((log) => {
         return {
