@@ -102,21 +102,21 @@ app.get("/api/users/:_id/logs", (req, res) => {
     if (err) return console.error(err);
     let logs = user.log;
     // return res.json(log)
-    const regex = /\d{4}\-\d{2}\-\d{2}/;
-    if (!regex.test(from) || !regex.test(to)) {
-      return res.json({
-        _id: user._id,
-        username: user.username,
-        count: logs.length,
-        log: logs.map((log) => {
-          return {
-            description: log.description,
-            duration: log.duration,
-            date: log.date.toDateString(),
-          };
-        }),
-      });
-    }
+    // const regex = /\d{4}\-\d{2}\-\d{2}/;
+    // if (!regex.test(from) || !regex.test(to)) {
+    //   return res.json({
+    //     _id: user._id,
+    //     username: user.username,
+    //     count: logs.length,
+    //     log: logs.map((log) => {
+    //       return {
+    //         description: log.description,
+    //         duration: log.duration,
+    //         date: log.date.toDateString(),
+    //       };
+    //     }),
+    //   });
+    // }
     const fromDate = new Date(from);
     const toDate = new Date(to);
     if (from) {
